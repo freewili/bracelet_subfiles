@@ -12,7 +12,7 @@ if [ -z $1 ]; then
 fi
 
 for sub_file in "./"*.sub; do
-  base_sub_file=`basename ${sub_file}`
-  fw_location=/radio/${base_sub_file}
+  base_sub_file=`echo ${sub_file} | sed "s/.*\///"`
+  fw_location=radio/${base_sub_file}
   fwi-serial -mi $1 -s ${sub_file} -fn ${fw_location}
 done
